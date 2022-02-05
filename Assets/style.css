@@ -1,0 +1,18 @@
+.navbar {
+    background-color: blue;
+    color: white;
+    justify-content: center;
+    font-size:xx-large;
+    font-weight: 700;
+}
+
+.search-bar {
+    max-width: 25%;
+    display: block;
+    height: 100%;
+}
+
+.card {
+    display: inline-block;
+
+}
