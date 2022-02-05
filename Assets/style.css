@@ -7,12 +7,26 @@
 }
 
 .search-bar {
-    max-width: 25%;
-    display: block;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
     height: 100%;
 }
 
-.card {
-    display: inline-block;
+.form-control {
+    max-width: 90%;
+    display: flex;
+    padding: 15px;
+}
 
+.btn-primary {
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    width: 200px;
+    flex: 1;
 }
