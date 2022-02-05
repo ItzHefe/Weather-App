@@ -15,15 +15,15 @@
             Weather Dashboard
         </span>
       </nav>
-    <div Class="search-bar">
+    <div Class="top-container">
         <div class="form-group">
             <label for="searchbar">Search for a city!</label>
             <input type="text" class="form-control" id="city-input">
+            <button type="submit" class="btn btn-primary" id="submit-Btn">Submit</button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
 
         <div class="card col-sm-9" style="width: 18rem;">
-          <div class="card-body">
+          <div class="card-body" id="city-result">
             <h5 class="card-title">most recently search city</h5>
             <h6 class="card-subtitle mb-2 text-muted">todays date</h6>
             <p class="card-text">Some weather stuff about the searched city will go here.</p>
@@ -32,13 +32,17 @@
     </div>  
 
     <div class="btn-group-vertical">
-      ...
+      <button type="button" class="btn btn-primary">Recent City 1</button>
+      <button type="button" class="btn btn-primary">Recent City 2</button>
+      <button type="button" class="btn btn-primary">Recent City 3</button>
+      <button type="button" class="btn btn-primary">Recent City 4</button>
+      <button type="button" class="btn btn-primary">Recent City 5</button>
     </div>
 
 
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;" id="five-cards">
       <div class="card-header">example city</div>
-      <div class="card-body">
+      <div class="card-body" id="result-content1">
         <h5 class="card-title">example date</h5>
         <p class="card-text">Some weather will go here.</p>
       </div>
@@ -46,7 +50,6 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./Assets/script.js"></script>   
 </body>
 </html>

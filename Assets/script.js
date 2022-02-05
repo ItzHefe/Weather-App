@@ -1,9 +1,36 @@
 // Weather App
+var submitBtnEl = document.querySelector('#submit-Btn');
+var userSearchEl = document.querySelector('#city-input');
+var resultsCityEl = document.querySelector('#city-result');
+var resultContentEl = document.querySelector('#result-content');
+//fetch call
+// async getCurrent (input) {
+//     var apiKey = "fd4dd3400bebdf41d0142da9d25aef0d";
+
+//     //generate the URL
+
+//     var response = await fetch(
+//         'api.openweathermap.org/data/2.5/weather?q=${input}&appid=${myKey}'
+//     );
+
+//     var data = await response.json();
+//     console.log(data);
+//     return data;
+// }
 
 //Search Bar
-//function: Event handler
-//1. read the value from the textbook into a veriable
+//submitBtnEl.addEventListener('click', newSearch);
+//1. read the value from the search bar into a variable - userSearchEl
 //2. create URL to fetch
+fetch (
+    'api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=fd4dd3400bebdf41d0142da9d25aef0d'
+)
+.then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  });
 //3. fetch the results
 //4. Call Function to update after results
 
