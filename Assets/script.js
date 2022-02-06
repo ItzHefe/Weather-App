@@ -45,15 +45,15 @@ fetch (
     console.log(data);
   });
 
-//   //localStorage check element
-// function find (c) {
-//     for (var i=0; i<lsCity.length; i++) {
-//         if(c.toUppercase()===lsCity[i]) {
-//             return -1;
-//         }
-//     }
-//     return 1;
-// }
+  //localStorage check element
+function find (c) {
+    for (var i=0; i<lsCity.length; i++) {
+        if(c.toUppercase()===lsCity[i]) {
+            return -1;
+        }
+    }
+    return 1;
+}
 
 
 //Search Bar
@@ -72,7 +72,7 @@ function displayWeather(event){
 }
 
 function currentWeather(city){
-    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=" + apiKey;
+    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     $.ajax({
         url:queryURL,
         method:'GET',
