@@ -1,29 +1,28 @@
 // Weather App
-var submitBtnEl = document.querySelector('#submit-Btn');
-var userSearchEl = document.querySelector('#city-input');
-var resultsCityEl = document.querySelector('#city-result');
-var resultContentEl = document.querySelector('#result-content');
-//fetch call
-// async getCurrent (input) {
-//     var apiKey = "fd4dd3400bebdf41d0142da9d25aef0d";
+var city="";
+var submitBtnEl = $('#submit-Btn');
+var userSearchEl = $('#city-input');
+var resultsCityEl = $('#city-result');
+var resultContentEl = $('#result-content');
+var cityTemp = $('#temperature');
+var cityHumidty= $('#humidity');
+var cityWind= $('#wind-speed');
+var cityUv= $('#uv-index');
+var apiKey ='fd4dd3400bebdf41d0142da9d25aef0d';
+var lsCity=[];
+//localStorage check element
+function find (c) {
+    for (var i=0; i<lsCity.length; i++) {
+        if(c.toUppercase()===lsCity[i]) {
+            return -1;
+        }
+    }
+    return 1;
+}
 
-//     //generate the URL
-
-//     var response = await fetch(
-//         'api.openweathermap.org/data/2.5/weather?q=${input}&appid=${myKey}'
-//     );
-
-//     var data = await response.json();
-//     console.log(data);
-//     return data;
-// }
-
-//Search Bar
-//submitBtnEl.addEventListener('click', newSearch);
-//1. read the value from the search bar into a variable - userSearchEl
-//2. create URL to fetch
+//fetch testing: Atlanta (Geocoding API to pass to One Call API)
 fetch (
-    'api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=fd4dd3400bebdf41d0142da9d25aef0d'
+    'http://api.openweathermap.org/geo/1.0/direct?q=Atlanta&limit=5&appid=fd4dd3400bebdf41d0142da9d25aef0d'
 )
 .then(function (response) {
     return response.json();
@@ -31,8 +30,33 @@ fetch (
   .then(function (data) {
     console.log(data);
   });
+//returns 5 cities... need to pass information in the search bar to user to ensure they are selecting the right city.
+
+//Testing OneCall API to Pass in LAN/LON
+fetch (
+    'https://api.openweathermap.org/data/2.5/onecall?lat=33.7489924&lon=-84.3902644&limit=1&appid=fd4dd3400bebdf41d0142da9d25aef0d'
+)
+.then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  });
+
+
+//Search Bar
+//submitBtnEl.addEventListener('click', newSearch);
+//1. read the value from the search bar into a variable - userSearchEl
+//2. create URL to fetch
 //3. fetch the results
 //4. Call Function to update after results
+function displayWeather(event){
+    event.preventDefault();
+    if(userSearchEl.val().trim()!==""){
+        city=userSearchEl.val().trim();
+        currentWeather(city);
+    }
+}
 
 
 //Function: DoResults

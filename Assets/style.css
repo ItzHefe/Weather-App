@@ -5,24 +5,3 @@
     font-size:xx-large;
     font-weight: 700;
 }
-
-.top-container {
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    height: 100%;
-}
-
-.form-control {
-    max-width: 90%;
-    display: flex;
-    padding: 15px;
-}
-
-.card {
-    display: flex;
-    position: relative;
-    width: 200px;
-    flex: 1;
-}
