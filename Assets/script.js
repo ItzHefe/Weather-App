@@ -10,15 +10,6 @@ var cityWind= $('#wind-speed');
 var cityUv= $('#uv-index');
 var apiKey ='fd4dd3400bebdf41d0142da9d25aef0d';
 var lsCity=[];
-//localStorage check element
-function find (c) {
-    for (var i=0; i<lsCity.length; i++) {
-        if(c.toUppercase()===lsCity[i]) {
-            return -1;
-        }
-    }
-    return 1;
-}
 
 //fetch testing: Atlanta (Geocoding API to pass to One Call API)
 fetch (
@@ -42,6 +33,27 @@ fetch (
   .then(function (data) {
     console.log(data);
   });
+
+  //Testing current weather API
+fetch (
+    'https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=fd4dd3400bebdf41d0142da9d25aef0d'
+)
+.then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  });
+
+  //localStorage check element
+function find (c) {
+    for (var i=0; i<lsCity.length; i++) {
+        if(c.toUppercase()===lsCity[i]) {
+            return -1;
+        }
+    }
+    return 1;
+}
 
 
 //Search Bar
