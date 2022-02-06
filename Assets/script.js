@@ -54,14 +54,7 @@ function find (c) {
     }
     return 1;
 }
-
-
-//Search Bar
-//submitBtnEl.addEventListener('click', newSearch);
-//1. read the value from the search bar into a variable - userSearchEl
-//2. create URL to fetch
-//3. fetch the results
-//4. Call Function to update after results
+//click on submit button to run function based on user input
 $("#submit-Btn").on("click", displayWeather);
 function displayWeather(event){
     event.preventDefault();
@@ -72,7 +65,7 @@ function displayWeather(event){
 }
 
 function currentWeather(city){
-    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    var queryURL= "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" + city + "&appid=" + apiKey;
     $.ajax({
         url:queryURL,
         method:'GET',
@@ -83,13 +76,16 @@ function currentWeather(city){
         // date format is taken from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
         var date= new Date(response.dt*1000).toLocaleDateString();
         $(resultsCityEl).html(response.name +"("+date+")" + "<img src="+iconURL+">");
+
+        $(cityTemp).html((response.main.temp).toFixed(2)+"&#8457");
+        // Display the Humidity
+        $(cityHumidty).html(response.main.humidity+"%");
+        //Display Wind speed
+        $(cityWind).html(response.wind.speed+"MPH");
     });
 };
 
-
 //Function: DoResults
-//1. Call function add search term to results
-//2. call function add today's results
 //3.call function add 5 day results
 //4. clear out the text box
 
