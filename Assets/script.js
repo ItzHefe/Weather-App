@@ -45,15 +45,15 @@ fetch (
     console.log(data);
   });
 
-  //localStorage check element
-function find (c) {
-    for (var i=0; i<lsCity.length; i++) {
-        if(c.toUppercase()===lsCity[i]) {
-            return -1;
-        }
-    }
-    return 1;
-}
+//   //localStorage check element
+// function find (c) {
+//     for (var i=0; i<lsCity.length; i++) {
+//         if(c.toUppercase()===lsCity[i]) {
+//             return -1;
+//         }
+//     }
+//     return 1;
+// }
 
 
 //Search Bar
@@ -62,6 +62,7 @@ function find (c) {
 //2. create URL to fetch
 //3. fetch the results
 //4. Call Function to update after results
+$("#submit-Btn").on("click", displayWeather);
 function displayWeather(event){
     event.preventDefault();
     if(userSearchEl.val().trim()!==""){
@@ -69,6 +70,21 @@ function displayWeather(event){
         currentWeather(city);
     }
 }
+
+function currentWeather(city){
+    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=" + apiKey;
+    $.ajax({
+        url:queryURL,
+        method:'GET',
+    }).then(function(response){
+        console.log(response);
+        var weatherIcon= response.weather[0].icon;
+        var iconURL="https://openweathermap.org/img/wn/"+ weatherIcon +"@2x.png";
+        // date format is taken from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+        var date= new Date(response.dt*1000).toLocaleDateString();
+        $(resultsCityEl).html(response.name +"("+date+")" + "<img src="+iconURL+">");
+    });
+};
 
 
 //Function: DoResults
