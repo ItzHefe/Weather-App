@@ -8,3 +8,6 @@
 .container {
     margin: 5px;
 }
+.container {
+    max-width: 98%;
+}

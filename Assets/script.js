@@ -82,12 +82,62 @@ function currentWeather(city){
         $(cityHumidty).html(response.main.humidity+"%");
         //Display Wind speed
         $(cityWind).html(response.wind.speed+"MPH");
+        //pull coords from original call and add them to local storage
+        UVIndex(response.coord.lon,response.coord.lat);
+        forecast(response.id);
+        if(response.cod==200){
+            lsCity=JSON.parse(localStorage.getItem("cityname"));
+            console.log(lsCity);
+            if (lsCity==null){
+                lsCity=[];
+                lsCity.push(city.toUpperCase()
+                );
+                localStorage.setItem("cityname",JSON.stringify(lsCity));
+                addToList(city);
+            }
+            else {
+                if(find(city)>0){
+                    lsCity.push(city.toUpperCase());
+                    localStorage.setItem("cityname",JSON.stringify(lsCity));
+                    addToList(city);
+                }
+            }
+        }
     });
 };
+function UVIndex(ln,lt){
+    //URL for OneCall API to pull in UV index to screen
+    var uvqURL="https://api.openweathermap.org/data/2.5/uvi?appid="+ apiKey+"&lat="+lt+"&lon="+ln;
+    $.ajax({
+            url:uvqURL,
+            method:"GET"
+            }).then(function(response){
+                $(cityUv).html(response.value);
+            });
+}
 
-//Function: DoResults
-//3.call function add 5 day results
-//4. clear out the text box
+// function add 5 day results
+function forecast(cityid){
+    var forcastURL="https://api.openweathermap.org/data/2.5/forecast?units=imperial&id=" + cityid + "&appid=" + apiKey;
+    $.ajax({
+        url:forcastURL,
+        method:"GET"
+    }).then(function(response){
+        
+        for (i=0; i<5; i++){
+            var date= new Date((response.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
+            var iconCode= response.list[((i+1)*8)-1].weather[0].icon;
+            var iconURL="https://openweathermap.org/img/wn/"+iconCode+".png";
+            var temp= response.list[((i+1)*8)-1].main.temp;
+            var humidity= response.list[((i+1)*8)-1].main.humidity;
+            //displaying on the 5 day cards
+            $("#fDate"+i).html(date);
+            $("#fImg"+i).html("<img src="+iconURL+">");
+            $("#fTemp"+i).html(temp+"&#8457");
+            $("#fHumidity"+i).html(humidity+"%");
+        }
+    });
+}
 
 
 //RECENT SEARCH
@@ -98,11 +148,3 @@ function currentWeather(city){
 // Function: EVENT HANDLER
 //1. read the data attribute to get the search term
 //2. Call search function
-
-
-//RESULTS TODAY
-//function add todays results
-
-
-//Results 5 days
-//function add 5 days results
