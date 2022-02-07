@@ -48,7 +48,7 @@ fetch (
   //localStorage check element
 function find (c) {
     for (var i=0; i<lsCity.length; i++) {
-        if(c.toUppercase()===lsCity[i]) {
+        if(c.toUppercase===lsCity[i]) {
             return -1;
         }
     }
@@ -90,8 +90,7 @@ function currentWeather(city){
             console.log(lsCity);
             if (lsCity==null){
                 lsCity=[];
-                lsCity.push(city.toUpperCase()
-                );
+                lsCity.push(city.toUpperCase                );
                 localStorage.setItem("cityname",JSON.stringify(lsCity));
                 addToList(city);
             }
@@ -142,6 +141,12 @@ function forecast(cityid){
 
 //RECENT SEARCH
 // function: add search term to results
+function addToList(city){
+    var listEl= $("<li><button>"+ city.toUpperCase() + "</button></li>");
+    $(listEl).attr("class","list-group-item");
+    $(listEl).attr("data-value", city.toUpperCase());
+    $(".list-group").append(listEl);
+}
 // parameter in: search term
 //1. add a button to the screen, with a data attribute that stores the search term
 
