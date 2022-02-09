@@ -150,6 +150,11 @@ function addToList(city){
 // parameter in: search term
 //1. add a button to the screen, with a data attribute that stores the search term
 
+// $(document).on("click", ".list-group-item", function() {
+//     console.log("previous city")
+//     let thisElement = $(this);
+//     currentWeather(thisElement.text(displayWeather));
+// })
 // Function: EVENT HANDLER
 //1. read the data attribute to get the search term
 //2. Call search function
